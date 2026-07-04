@@ -80,22 +80,21 @@ Additional product information is retrieved from the OpenFoodFacts API.
 
 ```text
 inventory-management-api/
-
-├---app.py
-├--- config.py
-├-- inventory.py
-├--routes.py
-|---services.py
-|--- cli.py
-│
-├-- tests/
-│   |-- test_routes.py
-│   |-- test_services.py
-│   |-- test_cli.py
-│
-├-- requirements.txt
-├-- README.md
-|--.gitignore
+.
+├── app.py
+├── cli.py
+├── config.py
+├── inventory.py
+├── README.md
+├── requirements.txt
+├── routes.py
+├── screenshots
+│   └── 1.folderstructureand gitignore.png
+├── services.py
+└── tests
+    ├── test_cli.py
+    ├── test_route.py
+    └── test_services.py
 ```
 
 ---
