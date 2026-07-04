@@ -71,7 +71,7 @@ inventory = [
         "price": 120.00,
         "stock": 85,
         "supplier": "Coca-Cola Beverages Africa",
-        "product_details": {
+        "product": {
             "product_name": "Del-Monte Pineapple Juice 1L",
             "ingredients_text": "Water, Pineapple Juice Concentrate, Sugar, Vitamin C",
             "brand": "DELMONTE"
