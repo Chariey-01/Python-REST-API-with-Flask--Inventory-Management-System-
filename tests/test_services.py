@@ -47,3 +47,5 @@ def test_fetch_product_network_error(mock_get):
 
    product = fetch_product_by_barcode("5449000131805")
    assert product is None
+
+  #  
