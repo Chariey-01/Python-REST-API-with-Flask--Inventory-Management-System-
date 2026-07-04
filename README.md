@@ -95,7 +95,7 @@ inventory-management-api/
 │
 ├-- requirements.txt
 ├-- README.md
-└--.gitignore
+|--.gitignore
 ```
 
 ---
@@ -182,19 +182,30 @@ Testing tools:
 
 ```bash
 git clone <repository-url>
-cd inventory-management-api
+cd the folder name(iventory management system)
 python3 -m venv venv
 pipenv install
 pipenv shell
-pip freeze > requirements.txt
+pip freeze > requirements.txt and another developer can recreate  my env with
+pip install -r requirements.txt 
 ```
+---
 
+# My env/packages
+
+```bash
+pip install flask
+pip install requests
+pip install pytest
+pip install pytest-mock
+pip install click
+```
 ---
 
 # Running the Application 
 
 ```bash
-python app.py
+python3 app.py
 ```
 
 ---
@@ -202,7 +213,7 @@ python app.py
 # Running Tests 
 
 ```bash
-pytest
+pytest -x
 ```
 
 ---
@@ -224,5 +235,4 @@ pytest
 ## Author
 
 Developed as part of the Python REST API with Flask Inventory Management System summative lab.n
-
 
