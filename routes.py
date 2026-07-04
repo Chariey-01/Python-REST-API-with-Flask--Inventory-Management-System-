@@ -1,6 +1,7 @@
 from flask import current_app
-from flask import jsonify
+from flask import jsonify,request
 from inventory import inventory
+from services import fetch_product_by_barcode
 
 def register_endponts(app):
   @app.route("/")
@@ -21,6 +22,35 @@ def register_endponts(app):
 
       return jsonify({"error":"Inventory Item not Found"}), 404
   
-    
+  # Post/creating new product/item to the list
+  @app.post("/inventory")
+  def add_inventory_item():
+     data = request.get_json()
+    #  validating expected input field
+     input_fields = ["barcode","price","stock","supplier"]
+     for field in input_fields:
+        if field not in data:
+           return jsonify({
+              "error":f"'{field}' is required!."
+           }), 400
+      # error message for None
+     product = fetch_product_by_barcode(data["barcode"])
+     if product is None:
+        return jsonify({
+           "error":"Product not found in OpenFoodFacts"
+        }), 404
+     
+     new_id = max((item["id"] for item in inventory),default=0) + 1
+     new_item = {
+    "id": new_id,
+    "barcode": data["barcode"],
+    "price": data["price"],
+    "stock": data["stock"],
+    "supplier": data["supplier"],
+    "product_details": product
+}
+  # save the posted item 
+     inventory.append(new_item)
+     return jsonify(new_item),201
      
      
