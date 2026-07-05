@@ -108,3 +108,61 @@ def test_add_inventory_item_not_found(mock_fetch):
     data = response.get_json()
 
     assert data["error"] == "Product not found in OpenFoodFacts."
+
+# patch test success
+def test_patch_inventory_success():
+    client = app.test_client()
+
+    response = client.patch(
+        "/inventory/1",
+        json={
+            "price": 250,
+            "stock": 75
+        }
+    )
+
+    assert response.status_code == 200
+
+    data = response.get_json()
+
+    assert data["price"] == 250
+    assert data["stock"] == 75
+
+# Non existing item during patch
+def test_patch_inventory_not_found():
+    client = app.test_client()
+
+    response = client.patch(
+        "/inventory/999",
+        json={
+            "price": 250
+        }
+    )
+
+    assert response.status_code == 404
+
+    data = response.get_json()
+
+    assert data["error"] == "Inventory item not found."
+
+# igonore protected field during patchind
+def test_patch_ignores_protected_fields():
+    client = app.test_client()
+
+    response = client.patch(
+        "/inventory/1",
+        json={
+            "id": 99,
+            "barcode": "111111111111",
+            "price": 300
+        }
+    )
+
+    data = response.get_json()
+
+    assert response.status_code == 200
+
+    assert data["id"] == 1
+    assert data["barcode"] == "45638809"
+    assert data["price"] == 300
+    
