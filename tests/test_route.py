@@ -165,4 +165,30 @@ def test_patch_ignores_protected_fields():
     assert data["id"] == 1
     assert data["barcode"] == "45638809"
     assert data["price"] == 300
+
+# successful delete
+def test_delete_inventory_success():
+    client = app.test_client()
+
+    response = client.delete("/inventory/6")
+
+    assert response.status_code == 200
+
+    data = response.get_json()
+
+    assert data["message"] == "Inventory item deleted successfully."
+    assert data["deleted_item"]["id"] == 6
+
+# delete product doest exist
+def test_delete_inventory_not_found():
+    client = app.test_client()
+
+    response = client.delete("/inventory/999")
+
+    assert response.status_code == 404
+
+    data = response.get_json()
+
+    assert data["error"] == "Inventory item not found."
     
+
