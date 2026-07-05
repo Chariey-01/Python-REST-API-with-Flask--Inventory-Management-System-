@@ -67,6 +67,18 @@ def register_endponts(app):
          return jsonify(item), 200    
    return jsonify({"error":"Inventory item not found"}), 404
    
+#Removing an item ffrom the inventory
+  @app.delete("/inventory/<int:id>")
+  def delete_inventory_item(item_id):
+   for index,item in enumerate(inventory):
+      if item["id"] == item_id:
+         deleted_item = inventory.pop(index)
+         return "",204
+      
+   return jsonify({"error":"Inventory item not foung"}), 404   
+        
+
+
 
      
      
