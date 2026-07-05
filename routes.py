@@ -52,5 +52,21 @@ def register_endponts(app):
   # save the posted item 
      inventory.append(new_item)
      return jsonify(new_item),201
+  
+# Patching the items
+  @app.patch("/inventory/<int:item_id>")
+  def update_inventory_item(item_id):
+   data = request.get_json()
+
+   allowed_fields = ["price","supplier","stock"]
+   for item in inventory:
+      if item["id"] == item_id:
+         for field in allowed_fields:
+            if field in data:
+               item[field] = data[field]
+         return jsonify(item), 200    
+   return jsonify({"error":"Inventory item not found"}), 404
+   
+
      
      
