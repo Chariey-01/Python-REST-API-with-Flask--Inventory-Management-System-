@@ -83,7 +83,6 @@ inventory-management-api/
 .
 ├── app.py
 ├── cli.py
-├── config.py
 ├── inventory.py
 ├── README.md
 ├── requirements.txt
@@ -106,15 +105,8 @@ Development will follow a feature-branch workflow.
 ```text
 main
 │
-|-- feature/project-setup
 |-- feature/mock-database
 |--feature/flask-api
-|-- feature/crud-routes
-|--feature/openfoodfacts-service
-|-- feature/cli
-|-- feature/testing
-|-- feature/documentation
-|-- release/v1
 ```
 
 Each feature will be developed on its own branch, reviewed, merged into `main`.
@@ -232,6 +224,6 @@ pytest -x
 ---
 
 ## Author
-
+Eng.Chariey
 Developed as part of the Python REST API with Flask Inventory Management System summative lab.n
 
